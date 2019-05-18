@@ -10,7 +10,6 @@
 ## Typescript supported in this branch: https://github.com/lean/phaser-es6-webpack/tree/typescript
 
 ## Features
-- ESLINT with JavaScript Standard Style configuration
 - Next generation of Javascript
 - Browsers are automatically updated as you change project files
 - Webpack ready
