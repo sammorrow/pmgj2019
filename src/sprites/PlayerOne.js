@@ -11,6 +11,8 @@ export default class extends Phaser.Sprite {
 
   update () {
     this.angle += 1;
-    
+    this.game.physics.arcade.collide(PlayerOne, Ground, () => {
+      PlayerTwo.body.velociy = -10;
+    });
   }
 }
