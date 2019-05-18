@@ -8,6 +8,10 @@ export default class extends Phaser.State {
     this.stage.backgroundColor = '#EDEEC9'
     this.fontsReady = false
     this.fontsLoaded = this.fontsLoaded.bind(this)
+
+    this.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
+    // this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.game.world.setBounds(0, 0, 1920, 1920);
   }
 
   preload() {
@@ -25,6 +29,8 @@ export default class extends Phaser.State {
 
     this.load.image('loaderBg', './assets/images/loader-bg.png')
     this.load.image('loaderBar', './assets/images/loader-bar.png')
+    this.load.image('background', './assets/images/naturey.png')
+
   }
 
   render() {
