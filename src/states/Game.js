@@ -14,8 +14,8 @@ export default class extends Phaser.State {
     this.tilesprite = this.game.add.tileSprite(0, 0, this.world.bounds.width, this.world.bounds.height, 'background');
 
     // add sprites
-    this.player1 = this.game.add.sprite(this.world.centerX - 200, this.world.centerY, 'chunli');
-    this.player2 = this.game.add.sprite(this.world.centerX + 200, this.world.centerY, 'ryu');
+    this.player1 = this.game.add.sprite(this.world.centerX - 300, this.world.centerY, 'chunli');
+    this.player2 = this.game.add.sprite(this.world.centerX + 300, this.world.centerY, 'ryu');
     this.player1.params = { fighter: FIGHTER_CHUN_LI, movementCooldown: 0, negative: false };
     this.player2.params = { fighter: FIGHTER_RYU, movementCooldown: 0, negative: true };
 
@@ -103,8 +103,13 @@ export default class extends Phaser.State {
 
     if (player1.params && player1.params.weapon){
       game.physics.arcade.collide(player1.params.weapon, player2, () => {
-        console.log('hello', player1.params.weapon)
         player2.kill();
+      });
+    }
+
+    if (player2.params && player2.params.weapon){
+      game.physics.arcade.collide(player2.params.weapon, player1, () => {
+        player1.kill();
       });
     }
 

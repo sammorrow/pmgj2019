@@ -13,9 +13,9 @@ export default class extends Phaser.State {
     
     // load assets
     this.load.spritesheet('chunli', 'assets/images/chunli/walking-58x96x8.png', 58, 96, 8);
-    this.load.spritesheet('ryu', 'assets/images/ryu/walking-58x96x8.png', 58, 96, 8);
+    this.load.spritesheet('ryu', 'assets/images/ryu/walking-56x96x5.png', 56, 96, 5);
     this.load.spritesheet('chunpunch', 'assets/images/chunli/forwardjump-68x102x8.png', 68, 102, 8);
-    this.load.spritesheet('ryupunch', 'assets/images/ryu/forwardjump-68x102x8.png', 68, 102, 8);
+    this.load.spritesheet('ryupunch', 'assets/images/ryu/jumphkick-56x96x3.png', 56, 96, 3);
 
     this.load.image('mushroom', 'assets/images/mushroom2.png')
     this.load.image('sword', 'assets/images/sword.png')

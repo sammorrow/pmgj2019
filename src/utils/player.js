@@ -52,6 +52,7 @@ export const activateLunge = (sprite, ctx) => {
   } else newSprite = new Phaser.Sprite(ctx.game, 64, 0, 'sword', 'sword.png');
 
   newSprite.anchor.setTo(.5, 0);
+  newSprite.visible = false;
   sprite.addChild(newSprite);
   ctx.game.physics.enable( newSprite, Phaser.Physics.ARCADE);
   sprite.params.weapon = newSprite;
