@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import PlayerOne from './PlayerOne';
+import Ground from './Ground';
 
 export default class extends Phaser.Sprite {
   constructor ({ game, x, y, asset }) {
@@ -7,6 +9,6 @@ export default class extends Phaser.Sprite {
   }
 
   update () {
-    this.angle += 1;
+    this.angle += 1;    
   }
 }
