@@ -1,9 +1,12 @@
 import { FORWARD_VELOCITY, LUNGE_INITIAL_VELOCITY, LUNGE_TIMEFRAME, LUNGE_DECELERATION, COOLDOWN_TIC, MOVEMENT_COOLDOWN, FIGHTER_CHUN_LI } from '../constants/player';
 
+// unused right now
 export const resetSpriteMomentum = sprite => {
   sprite.body.velocity.x = FORWARD_VELOCITY;
 }
 
+
+// called during every frame
 export const cooldownTic = sprite => {
   if (sprite.params.movementCooldown > 0) sprite.params.movementCooldown = sprite.params.movementCooldown - COOLDOWN_TIC;
   else sprite.params.canMove = true;
@@ -15,7 +18,6 @@ export const cooldownTic = sprite => {
         sprite.loadTexture('chunli');
         sprite.animations.play('walk');  
       } else {
-        console.log(sprite);
         sprite.loadTexture('ryu');
         sprite.animations.play('walk');  
       }
@@ -27,6 +29,7 @@ export const cooldownTic = sprite => {
   }
 }
 
+// called when a player presses the lunge button
 export const activateLunge = (sprite, ctx) => {
   sprite.params.lungeTimeframe = LUNGE_TIMEFRAME;
   sprite.params.isLunging = true;
@@ -58,6 +61,7 @@ export const activateLunge = (sprite, ctx) => {
   sprite.params.weapon = newSprite;
 }
 
+// called during each frame of a lunge
 export const lunge = sprite => {
   const updatedVelocity = sprite.params.lungeVelocity / LUNGE_DECELERATION;
 
