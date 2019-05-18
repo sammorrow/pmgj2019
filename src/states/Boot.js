@@ -1,3 +1,4 @@
+/* eslint-disable space-before-function-paren */
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
 import config from '../config';

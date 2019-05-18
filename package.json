@@ -1,8 +1,7 @@
 {
-    "name": "PhaserES6Webpack",
+    "name": "PMGJ",
     "version": "1.2.1",
     "description": "",
-    "author": "leandro cabrera <leandcabrera@gmail.com>",
     "main": "index.js",
     "scripts": {
         "dev": "webpack",
@@ -22,7 +21,6 @@
         "clean-webpack-plugin": "^0.1.19",
         "copy-webpack-plugin": "^4.6.0",
         "cordova": "^8.1.2",
-        "eslint": "^4.19.1",
         "eslint-config-standard": "^10.2.1",
         "eslint-plugin-import": "^2.17.2",
         "eslint-plugin-node": "^6.0.1",
