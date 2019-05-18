@@ -11,20 +11,26 @@ export default class extends Phaser.State {
   preload() { }
 
   create() {
-    this.tilesprite = this.game.add.tileSprite(0, 0, this.world.bounds.width, this.world.bounds.height, 'background');
+    this.bgLayer = this.game.add.tileSprite(0, 0, this.world.bounds.width, this.world.bounds.height, 'background');
+    this.collisionLayer = this.game.add.sprite(0, 832, 'collision');
 
     // add sprites
-    this.player1 = this.game.add.sprite(this.world.centerX - 300, this.world.centerY, 'chunli');
-    this.player2 = this.game.add.sprite(this.world.centerX + 300, this.world.centerY, 'ryu');
+    this.player1 = this.game.add.sprite(this.world.centerX - 300, this.world.centerY - 240, 'chunli');
+    this.player2 = this.game.add.sprite(this.world.centerX + 300, this.world.centerY - 240, 'ryu');
     this.player1.params = { fighter: FIGHTER_CHUN_LI, movementCooldown: 0, negative: false };
     this.player2.params = { fighter: FIGHTER_RYU, movementCooldown: 0, negative: true };
 
-    this.game.physics.enable( [ this.player1, this.player2, this.tilesprite ], Phaser.Physics.ARCADE);
-    this.tilesprite.body.collideWorldBounds = true;
-    this.tilesprite.body.immovable = true;
-    this.tilesprite.body.allowGravity = false;
+    this.game.physics.enable( [ this.player1, this.player2, this.collisionLayer ], Phaser.Physics.ARCADE);
+    this.collisionLayer.body.collideWorldBounds = true;
+    this.collisionLayer.body.immovable = true;
+    this.collisionLayer.body.allowGravity = false;
 
+    this.player1.body.allowGravity = true;
+    this.player1.body.gravity.y = 200;
     this.player1.body.collideWorldBounds = true;
+
+    this.player2.body.allowGravity = true;
+    this.player2.body.gravity.y = 200;
     this.player2.body.collideWorldBounds = true;
 
 
@@ -57,13 +63,15 @@ export default class extends Phaser.State {
 
 
   }
-  update() {
-    const { player1, player2, tilesprite } = this;
+
+  update(){
+    this.game.physics.arcade.collide(this.player1, this.collisionLayer);
+    this.game.physics.arcade.collide(this.player2, this.collisionLayer);
 
   }
 
   render() {
-    const { cursors, player1, player2, tilesprite } = this;
+    const { cursors, player1, player2, bgLayer, collisionLayer } = this;
 
     cooldownTic(player1);
     cooldownTic(player2);
@@ -95,7 +103,10 @@ export default class extends Phaser.State {
       this.movementTime = MOVEMENT_UPTIME;
     }
 
-    game.physics.arcade.collide(player2, tilesprite);
+    game.physics.arcade.collide(player1, collisionLayer);
+    game.physics.arcade.collide(player2, bgLayer, () => {
+      player2.body.velocity.y = -100;
+    });
     game.physics.arcade.collide(player1, player2, () => {
       player1.body.velocity.x = -2000;
       player2.body.velocity.x = 2000;
