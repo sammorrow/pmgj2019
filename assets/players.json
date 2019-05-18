@@ -1,0 +1,29 @@
+[
+    {
+        "name" : "chunli", "direction" : "right",
+        "animations" : [
+            { "name": "idle", "file": "images/chunli/idle-53x96x4.png", "width" : "53", "height": "94", "frames": "4", "mood": "idle" },
+            { "name": "walking", "file": "images/chunli/walking-58x96x8", "width" : "58", "height": "96", "frames": "8", "mood": "idle" },
+            { "name": "forwardjump", "file": "images/chunli/forwardjump-68x102x8.png", "width" : "68", "height": "102", "frames": "8", "mood": "attack" },
+            { "name": "jumphkick", "file": "images/chunli/jumphkick-66x100x6.png", "width" : "66", "height": "100", "frames": "6", "mood": "attack" },
+        ]
+    },
+    {
+        "name" : "chunli-flipped", "direction" : "left",
+        "animations" : [
+            { "name": "idle", "file": "images/chunli/idle-53x96x4.png", "width" : "53", "height": "94", "frames": "4", "mood": "idle" },
+            { "name": "walking", "file": "images/chunli/walking-58x96x8", "width" : "58", "height": "96", "frames": "8", "mood": "idle" },
+            { "name": "forwardjump", "file": "images/chunli/forwardjump-68x102x8.png", "width" : "68", "height": "102", "frames": "8", "mood": "attack" },
+            { "name": "jumphkick", "file": "images/chunli/jumphkick-66x100x6.png", "width" : "66", "height": "100", "frames": "6", "mood": "attack" }
+        ]
+    },
+    {
+        "name" : "ryu", "direction" : "left",
+        "animations" : [
+            { "name": "idle", "file": "images/ryu/idle-53x96x4.png", "width" : "53", "height": "94", "frames": "4", "mood": "idle" },
+            { "name": "walking", "file": "images/ryu/walking-56x96x5", "width" : "56", "height": "96", "frames": "5", "mood": "idle" },
+            { "name": "forwardjump", "file": "images/ryu/forwardjump-748x102x7.png", "width" : "74", "height": "102", "frames": "7", "mood": "attack" },
+            { "name": "jumphkick", "file": "images/ryu/jumphkick-56x96x3.png", "width" : "56", "height": "96", "frames": "3", "mood": "attack" }
+        ]
+    }
+]
