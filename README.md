@@ -1,69 +1,36 @@
-# PMGJ Project
+# PMGJ Project - Totally Not Street Fighter!
 
-## TO-DOs
-menu state
-better core mechanics / lunge
-reset position / camera on kill
-victory state
-music
-sfx
-changing out sprites
+## Overview
 
-stretching: multiplayer
+Simple tug-of-war game, built with Phaser.
 
+## Setup
 
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+### 1. Clone this repo
 
-## Phaser 3 supported in this branch: https://github.com/lean/phaser-es6-webpack/tree/phaser3
-## Typescript supported in this branch: https://github.com/lean/phaser-es6-webpack/tree/typescript
+In your terminal, navigate into your workspace directory and run
 
-## Features
-- Next generation of Javascript
-- Browsers are automatically updated as you change project files
-- Webpack ready
-- WebFont Loader
-- Multilanguage support
-- PWA Support
+```git clone https://github.com/sammorrow/pmgj2019.git```
 
-## Typescript 
-If you need typescript support checkout the ```typescript``` branch. Thanks to @MatsMaker
-
-# Setup
-You'll need to install a few things before you have a working copy of the project.
-
-## 1. Clone this repo:
-
-Navigate into your workspace directory.
-
-Run:
-
-```git clone https://github.com/lean/phaser-es6-webpack.git```
-
-## 2. Install node.js and npm:
+### 2. Install node.js and npm:
 
 https://nodejs.org/en/
 
+### 3. Install dependencies (optionally you can install [yarn](https://yarnpkg.com/)):
 
-## 3. Install dependencies (optionally you can install [yarn](https://yarnpkg.com/)):
-
-Navigate to the cloned repo's directory.
-
-Run:
+Navigate to the cloned repo's directory and run:
 
 ```npm install``` 
 
-or if you chose yarn, just run ```yarn```
+### 4. Run the development server:
 
-## 4. Run the development server:
-
-Run:
+In the same directory, run:
 
 ```npm run dev```
 
 This will run a server so you can run the game in a browser. It will also start a watch process, so you can change the source and the process will recompile and refresh the browser automatically.
 
 To run the game, open your browser and enter http://localhost:3000 into the address bar.
-
 
 ## Build for deployment:
 
@@ -74,6 +41,7 @@ Run:
 This will optimize and minimize the compiled bundle.
 
 ## Deploy for cordova:
+
 Make sure to uncomment the cordova.js file in the src/index.html and to update config.xml with your informations. (name/description...)
 
 More informations about the cordova configuration:
@@ -104,17 +72,3 @@ This will optimize and minimize the compiled bundle.
 
 ## Config:
 before you get to work you will surely want to check the config file. You could setup dimensions, webfonts, etc
-
-## Webfonts:
-In the config file you can specify which webfonts you want to include. In case you do not want to use webfonts simply leave the array empty
-
-## Credits
-Big thanks to these great repos:
-
-https://github.com/belohlavek/phaser-es6-boilerplate
-
-https://github.com/cstuncsik/phaser-es6-demo
-
-## Contributors
-
-https://github.com/RenaudROHLINGER
