@@ -137,13 +137,6 @@ export default class extends Phaser.State {
     
     cooldownTic(player1, this);
     cooldownTic(player2, this);
-
-    if (__DEV__) {
-      this.game.debug.spriteInfo(player2, 32, 32)
-      game.debug.body(player1);
-      game.debug.body(player2);
-  
-    }
     
     // player movement + controls
     if (!this.gameOver && this.countdownFrame > 105){

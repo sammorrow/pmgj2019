@@ -49,7 +49,7 @@ export default class extends Phaser.State {
     this.load.audio('scream5', 'assets/audio/sfx/Purple Monkey Scream 4.mp3');
 
     this.load.audio('defeat', 'assets/audio/sfx/Square FX Defeat.mp3');
-    this.load.audio('victory', 'assets/audio/sfx/Square FX Victory.mp3');
+    this.load.audio('victory', 'assets/audio/sfx/Purple Monkey Instrumental Stinger Victory.mp3');
 
     this.load.audio('squarefx', 'assets/audio/sfx/Purple Monkey Square FX 1.mp3')
   }
@@ -57,6 +57,6 @@ export default class extends Phaser.State {
 
   create () {
     this.game.add.tileSprite(0, 0, this.world.bounds.width, this.world.bounds.height, 'background');
-    this.state.start('Menu');
+    this.state.start('Game');
   }
 }

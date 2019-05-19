@@ -39,7 +39,7 @@ export const cooldownTic = (sprite, ctx) => {
     } else {
       sprite.loadTexture('chunli');
       sprite.animations.play('walk');  
-      sprite.reset(ctx.player2.body.x - 1000, ctx.player2.body.y);
+      sprite.reset(ctx.player2.body.x - 1200, ctx.player2.body.y);
     }
   }
 }
@@ -89,7 +89,7 @@ export const lunge = (sprite, ctx) => {
       newSprite.scale.setTo(0.75, 0.7);
       newSprite.anchor.setTo(0.4, -0.75);
     }
-    // newSprite.alpha = 0;
+    newSprite.alpha = 0;
     sprite.addChild(newSprite);
     ctx.game.physics.enable(newSprite, Phaser.Physics.ARCADE);
     sprite.params.weapon = newSprite;
@@ -110,7 +110,8 @@ export const victory = (sprite, ctx) => {
   sprite.body.gravity.y = -100;
   sprite.body.collideWorldBounds = false;
 
-
+  ctx.music.stop();
+  ctx.victory.play();
   ctx.cheers.loopFull();
   ctx.cheers.play();
   
