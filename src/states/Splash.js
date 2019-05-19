@@ -16,8 +16,10 @@ export default class extends Phaser.State {
     this.load.spritesheet('ryu', 'assets/images/ryu/walking-56x96x5.png', 56, 96, 5);
     this.load.spritesheet('chunpunch', 'assets/images/chunli/hpunch-90-96-3.png', 90, 96, 3);
     this.load.spritesheet('ryupunch', 'assets/images/ryu/jumphkick-56x96x3.png', 56, 96, 3);
+    this.load.spritesheet('chunidle', 'assets/images/chunli/idle-53x96x4.png', 53, 96, 4);
+    this.load.spritesheet('ryuidle', 'assets/images/ryu/idle-53x96x4.png', 53, 96, 4);
 
-    this.load.image('sword', 'assets/images/sword.png');
+    this.load.image('sword', 'assets/images/red-block.png');
 
     this.load.audio('loop1', 'assets/audio/loops/Purple Monkey Loop 1.mp3');
     this.load.audio('loop2', 'assets/audio/loops/Purple Monkey Loop 2 Slower Maybe Menu.mp3');
@@ -36,7 +38,7 @@ export default class extends Phaser.State {
     this.load.audio('scream3', 'assets/audio/sfx/Purple Monkey Scream 3.mp3');
     this.load.audio('scream4', 'assets/audio/sfx/Purple Monkey Scream 4.mp3');
     this.load.audio('scream5', 'assets/audio/sfx/Purple Monkey Scream 4.mp3');
-\
+
     this.load.audio('defeat', 'assets/audio/sfx/Purple Monkey Defeat.mp3');
     this.load.audio('victory', 'assets/audio/sfx/Purple Monkey Victory.mp3');
 
