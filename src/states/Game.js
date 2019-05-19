@@ -181,7 +181,6 @@ export default class extends Phaser.State {
     // weapon hits
     if (!this.clashed && player1.params && player1.params.weapon){
       game.physics.arcade.overlap(player1.params.weapon, player2, () => {
-        console.log(player1.body);
         game.camera.follow(player1, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
         playHitSfx(this);
         this.player2.loadTexture('ryufall');
