@@ -14,8 +14,15 @@ export default class extends Phaser.State {
 
   create() {
     this.game.add.audio('loop2').play();
-    this.game.add.image('title', '500', '500')
+    this.game.add.image(150, 50, 'title');
+    this.game.add.image(300, 125, 'graphic').scale.setTo(.15, .15);
+    this.button = this.game.add.image(325, 385, 'button').scale.setTo(.3, .3);
+    this.button.inputEnabled = true;
+    this.button.events.onInputDown.add(onClick, this);
 
+    function onClick() {
+      this.state.start('Game');
+    }
   }
 }
 
