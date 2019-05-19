@@ -9,12 +9,11 @@ export default class extends Phaser.State {
     this.load.image('title', 'assets/images/menu/title.png');
     this.load.image('graphic', 'assets/images/menu/graphic.png');
     this.load.image('button', 'assets/images/menu/button.png');
-    
+    this.music = this.game.add.audio('loop2');
   }
 
   create() {
-    let music = this.game.add.audio('loop2');
-    music.play();
+    this.music.play();
     this.game.add.image(150, 50, 'title');
     this.game.add.image(300, 125, 'graphic').scale.setTo(.15, .15);
     this.button = this.game.add.image(325, 385, 'button');
@@ -24,7 +23,7 @@ export default class extends Phaser.State {
 
     function onClick() {
       this.state.start('Game');
-      music.stop();
+      this.music.stop();
     }
   }
 }
