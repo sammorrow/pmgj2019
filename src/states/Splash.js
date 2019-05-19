@@ -24,6 +24,19 @@ export default class extends Phaser.State {
     this.load.audio('loop3', 'assets/audio/loops/Purple Monkey Loop 3.wav');
     this.load.audio('loop4', 'assets/audio/loops/Purple Monkey Loop 4.wav')
 
+    this.load.audio('scream1', 'assets/audio/sfx/Purple Monkey Scream 1.wav');
+    this.load.audio('scream2', 'assets/audio/sfx/Purple Monkey Scream 2.wav');
+    this.load.audio('scream3', 'assets/audio/sfx/Purple Monkey Scream 3.wav');
+    this.load.audio('scream4', 'assets/audio/sfx/Purple Monkey Scream 4.wav');
+    this.load.audio('scream5', 'assets/audio/sfx/Purple Monkey Scream 4.wav');
+
+    this.load.audio('hpunch', 'assets/audio/sfx/Purple Monkey Punch High.wav');
+    this.load.audio('mpucnh', 'assets/audio/sfx/Purple Monkey Punch Med.wav');
+    this.load.audio('lpunch', 'assets/audio/sfx/Purple Monkey Punch Low.wav');
+
+    this.load.audio('grunt', 'assets/audio/sfx/Purple Monkey Grunt.wav');
+    this.load.audio('crowd', 'assets/audio/sfx/Purple Monkey Crowd.wav');
+    this.load.audio('squarefx', 'assets/audio/sfx/Purple Monkey Square FX 1.wav')
   }
 
 
@@ -31,7 +44,7 @@ export default class extends Phaser.State {
     this.game.add.tileSprite(0, 0, this.world.bounds.width, this.world.bounds.height, 'background');
     this.state.start('Game');
 
-    let music = this.add.audio('loop1');
+    let music = this.game.add.audio('loop1');
     music.play()
   }
 }
