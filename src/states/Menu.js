@@ -15,7 +15,7 @@ export default class extends Phaser.State {
 
   create() {
     this.music.play();
-    this.background = this.game.add.tileSprite(0, 0, 800, 600, 'tile')
+    this.background = this.game.add.tileSprite(50, 0, 800, 600, 'tile')
     this.game.add.image(150, 50, 'title');
     this.game.add.image(300, 125, 'graphic').scale.setTo(.15, .15);
     this.button = this.game.add.image(325, 385, 'button');
