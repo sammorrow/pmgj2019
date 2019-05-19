@@ -149,7 +149,7 @@ export default class extends Phaser.State {
           else player1.body.velocity.x = FORWARD_VELOCITY;
         }
       } else {
-        player1.angle -= 2;
+        if (!this.gameOver) player1.angle -= 2;
       }
 
       if (!player2.params.deadTimeout){
@@ -161,7 +161,7 @@ export default class extends Phaser.State {
           else player2.body.velocity.x = -FORWARD_VELOCITY;
         }
       } else {
-        player2.angle -= 2;
+        if (!this.gameOver) player2.angle -= 2;
       }
 
       if (this.movementTime > -MOVEMENT_DOWNTIME){
@@ -192,6 +192,8 @@ export default class extends Phaser.State {
         if (player1.body.position.x > 2100) {
           this.gameOver = true
           this.warningText.setText("PLAYER 1 WINS !!", this)
+          this.player2.body.collideWorldBounds = false;
+          this.player1.body.gravity.y = 500;
           this.player2.params.deadTimeout = 60000;
           victory(this.player1, this)
           this.resetTimer = RESET_TIMER;
@@ -210,14 +212,16 @@ export default class extends Phaser.State {
         this.player1.body.velocity.x = -1000;
         this.player1.animations.play('fall', 4, false, true);
         this.willScream = 20;
-        if (game.camera.view.x === 0) {
+        if (player2.body.position.x < 300) {
           this.gameOver = true
           this.warningText.setText("PLAYER 2 WINS !!", this)
+          this.player1.body.collideWorldBounds = false;
+          this.player1.body.gravity.y = 500;
           this.player1.params.deadTimeout = 600000;
           victory(this.player2, this)
           this.resetTimer = RESET_TIMER;
         }
-        else if (game.camera.view.x < 500) this.warningText.setText("WARNING : PLAYER 1", this)
+        else if (player1.body.position.x < 950) this.warningText.setText("WARNING : PLAYER 1", this)
         else this.warningText.setText("")
       });
     }
