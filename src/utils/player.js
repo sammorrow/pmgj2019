@@ -61,7 +61,13 @@ export const activateLunge = (sprite, ctx) => {
   } else {
     sprite.loadTexture('ryupunch');
     sprite.animations.play('punch', 10);
-    if (Math.floor(Math.random() * 100) > 20) ctx.grunt.play();
+  }
+  if (Math.floor(Math.random() * 100) > 40) {
+    let gruntNum = Math.floor(Math.random() * 100);
+    if (gruntNum > 90) ctx.grunt4.play()
+    else if (gruntNum > 70) ctx.grunt3.play()
+    else if (gruntNum > 50) ctx.grunt2.play()
+    else ctx.grunt1.play()
   }
 }
 
@@ -97,4 +103,24 @@ export const lunge = (sprite, ctx) => {
   sprite.body.velocity.x = updatedVelocity
   sprite.params.lungeVelocity = updatedVelocity;
   sprite.params.lungeFrame++;
+}
+
+export const victory = (sprite, ctx) => {
+  sprite.body.velocity.x = 0;
+  sprite.body.gravity.y = -100;
+  sprite.body.collideWorldBounds = false;
+
+
+  ctx.cheers.loopFull();
+  ctx.cheers.play();
+  
+  if (sprite.params.negative){
+    sprite.loadTexture('ryuvictory');
+    sprite.animations.play('victory', 5, true);
+  } else {
+    sprite.loadTexture('chunvictory');
+    sprite.animations.play('victory', 10, true);
+    sprite.body.offset.setTo(0, -30)
+  }
+
 }

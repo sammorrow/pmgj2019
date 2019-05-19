@@ -1,9 +1,9 @@
 /* globals __DEV__ */
 import Phaser from 'phaser'
-import { cooldownTic, lunge, activateLunge } from '../utils/player';
+import { cooldownTic, lunge, activateLunge, victory } from '../utils/player';
 import { FORWARD_VELOCITY, BACKWARD_VELOCITY, FIGHTER_CHUN_LI, FIGHTER_RYU } from '../constants/player';
-import { MOVEMENT_UPTIME, MOVEMENT_DOWNTIME, DEAD_TIMEOUT } from '../constants/world';
-import { countdown, playHitSfx } from '../utils/world';
+import { MOVEMENT_UPTIME, MOVEMENT_DOWNTIME, DEAD_TIMEOUT, RESET_TIMER } from '../constants/world';
+import { countdown, playHitSfx, resetGame } from '../utils/world';
 
 export default class extends Phaser.State {
   init() { }
@@ -43,6 +43,15 @@ export default class extends Phaser.State {
     this.iKey = game.input.keyboard.addKey(Phaser.Keyboard.I);
     this.pKey = game.input.keyboard.addKey(Phaser.Keyboard.P);
 
+    // set up GUI
+    this.warningText = game.add.text(500, 100, '', {
+      font: "32px Arial",
+      fill: "#ff0044",
+      align: "center"
+    });
+    this.warningText.anchor.setTo(0.5, 0.5)
+    this.warningText.fixedToCamera = true;
+  
 
     // animations
     this.player1.animations.add('walk');
@@ -67,17 +76,26 @@ export default class extends Phaser.State {
     this.player2.animations.add('idle');
 
 
+    this.music = Math.floor(Math.random() * 100) > 50 ? this.game.add.audio('loop1') : this.game.add.audio('loop3') 
+    this.music.play()
+
     this.player1.animations.play('idle', 5, true);
     this.player2.animations.play('idle', 4, true);
 
 
     // sfx
-    this.grunt = this.game.add.audio('grunt');
+    this.grunt1 = this.game.add.audio('grunt1');
+    this.grunt2 = this.game.add.audio('grunt2');
+    this.grunt3 = this.game.add.audio('grunt3');
+    this.grunt4 = this.game.add.audio('grunt4');
+
     this.scream1 = this.game.add.audio('scream1');
     this.scream2 = this.game.add.audio('scream2');
     this.hpunch = this.game.add.audio('hpunch');
     this.mpunch = this.game.add.audio('mpunch');
     this.lpunch = this.game.add.audio('lpunch');
+    this.victory = this.game.add.audio('victory');
+    this.cheers = this.game.add.audio('crowd');
 
 
 
@@ -88,9 +106,12 @@ export default class extends Phaser.State {
     // when two weapons meet, there is a bounceback
     this.clashed = 0;
 
+    // bool to represent win state
+    this.gameOver = false;
+
     // setup camera
     game.camera.x = this.world.centerX - 450;
-    game.camera.bounds.y = 300;
+    game.camera.bounds.y = 400;
 
   }
 
@@ -125,7 +146,7 @@ export default class extends Phaser.State {
     }
     
     // player movement + controls
-    if (this.countdownFrame > 105){
+    if (!this.gameOver && this.countdownFrame > 105){
       if (!player1.params.deadTimeout){
         if (player1.params.isLunging) lunge(player1, this);
         else if (player1.params.canMove){
@@ -167,6 +188,7 @@ export default class extends Phaser.State {
     // weapon hits
     if (!this.clashed && player1.params && player1.params.weapon){
       game.physics.arcade.overlap(player1.params.weapon, player2, () => {
+        console.log(player1.body);
         game.camera.follow(player1, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
         playHitSfx(this);
         this.player2.loadTexture('ryufall');
@@ -174,7 +196,16 @@ export default class extends Phaser.State {
         this.player2.params.isDead = true;
         this.player2.body.velocity.x = 1000;
         this.player2.animations.play('fall', 4, false, true);
-        this.scream1.play();
+        this.willScream = 20;
+        if (player1.body.position.x > 2100) {
+          this.gameOver = true
+          this.warningText.setText("PLAYER 1 WINS !!", this)
+          this.player2.params.deadTimeout = 60000;
+          victory(this.player1, this)
+          this.resetTimer = RESET_TIMER;
+        }
+        else if (player1.body.position.x > 1400) this.warningText.setText("WARNING : PLAYER 2", this)
+        else this.warningText.setText("")
       });
     }
     if (!this.clashed && player2.params && player2.params.weapon){
@@ -186,8 +217,31 @@ export default class extends Phaser.State {
         this.player1.params.isDead = true;
         this.player1.body.velocity.x = -1000;
         this.player1.animations.play('fall', 4, false, true);
+        this.willScream = 20;
+        if (game.camera.view.x === 0) {
+          this.gameOver = true
+          this.warningText.setText("PLAYER 2 WINS !!", this)
+          this.player1.params.deadTimeout = 600000;
+          victory(this.player2, this)
+          this.resetTimer = RESET_TIMER;
+        }
+        else if (game.camera.view.x < 500) this.warningText.setText("WARNING : PLAYER 1", this)
+        else this.warningText.setText("")
       });
     }
+    if (this.willScream){
+      this.willScream--;
+      if (this.willScream === 0 && Math.floor(Math.random() * 100) > 90) this.scream1.play()
+    }
     if (this.clashed) this.clashed--;
+    if (this.resetTimer){
+      this.resetTimer--;
+      if (this.resetTimer === 0){
+        this.button = this.game.add.image(200, 150, 'button')
+        this.button.fixedToCamera = true;
+        this.button.inputEnabled = true;
+        this.button.events.onInputDown.add(resetGame(this), this);
+      }
+    }
   }
 }

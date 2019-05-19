@@ -13,8 +13,24 @@ export const countdown = ctx => {
   ctx.countdownFrame++;
 }
 
+
+export const displayWarningText = (text, ctx) => {
+  if (!text){
+    ctx.warningText.setText("");
+  } else {
+    ctx.warningText.setText(`text`);
+  }
+}
+
+
 export const playHitSfx = ctx => {
   if (Math.floor(Math.random() * 100) > 20) ctx.hpunch.play();
   else if (Math.floor(Math.random() * 100) > 20) ctx.mpunch.play();
   else ctx.lpunch.play()
+}
+
+export const resetGame = ctx => () => {
+  ctx.music.stop()
+  ctx.cheers.stop()
+  ctx.state.start('Splash');
 }

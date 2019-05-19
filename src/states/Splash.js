@@ -22,6 +22,7 @@ export default class extends Phaser.State {
     this.load.spritesheet('ryuvictory', 'assets/images/ryu/victory-52x110x5.png', 52, 110, 5);
     this.load.spritesheet('chunfall', 'assets/images/chunli/defeat-80-96-4i.png', 80, 96, 4);
     this.load.spritesheet('ryufall', 'assets/images/ryu/defeat-75x96x4.png', 75, 96, 4);
+    this.load.image('button', 'assets/images/new-game-button.png');
 
     this.load.image('sword', 'assets/images/red-block.png');
 
@@ -31,7 +32,11 @@ export default class extends Phaser.State {
     this.load.audio('loop4', 'assets/audio/loops/Purple Monkey Loop 4 Revised.mp3')
 
     this.load.audio('crowd', 'assets/audio/sfx/Purple Monkey Crowd.mp3');
-    this.load.audio('grunt', 'assets/audio/sfx/Purple Monkey Grunt.mp3');
+
+    this.load.audio('grunt1', 'assets/audio/sfx/Purple Monkey Grunt.mp3');
+    this.load.audio('grunt2', 'assets/audio/sfx/Purple Monkey Grunt 2.mp3');
+    this.load.audio('grunt3', 'assets/audio/sfx/Purple Monkey Grunt More Muffled.mp3');
+    this.load.audio('grunt4', 'assets/audio/sfx/Purple Monkey Grunt 4.mp3');
 
     this.load.audio('hpunch', 'assets/audio/sfx/Purple Monkey Punch High.mp3');
     this.load.audio('lpunch', 'assets/audio/sfx/Purple Monkey Punch Low.mp3');
@@ -43,8 +48,8 @@ export default class extends Phaser.State {
     this.load.audio('scream4', 'assets/audio/sfx/Purple Monkey Scream 4.mp3');
     this.load.audio('scream5', 'assets/audio/sfx/Purple Monkey Scream 4.mp3');
 
-    this.load.audio('defeat', 'assets/audio/sfx/Purple Monkey Defeat.mp3');
-    this.load.audio('victory', 'assets/audio/sfx/Purple Monkey Victory.mp3');
+    this.load.audio('defeat', 'assets/audio/sfx/Square FX Defeat.mp3');
+    this.load.audio('victory', 'assets/audio/sfx/Square FX Victory.mp3');
 
     this.load.audio('squarefx', 'assets/audio/sfx/Purple Monkey Square FX 1.mp3')
   }
@@ -53,7 +58,5 @@ export default class extends Phaser.State {
   create () {
     this.game.add.tileSprite(0, 0, this.world.bounds.width, this.world.bounds.height, 'background');
     this.state.start('Menu');
-    let music = this.game.add.audio('loop1');
-    // music.play()
   }
 }
