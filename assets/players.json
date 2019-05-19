@@ -10,7 +10,8 @@
             { "name": "mpunch", "file": "images/chunli/lpunch-65x96x3.png", "width" : "65", "height": "96", "frames": "3", "mood": "attack" },
             { "name": "lpunch", "file": "images/chunli/mpunch-90x96x3.png", "width" : "90", "height": "96", "frames": "3", "mood": "attack" },          
             { "name": "hpunch", "file": "images/chunli/hpunch-90x96x3.png", "width" : "90", "height": "96", "frames": "3", "mood": "attack" },
-            { "name": "victory", "file": "images/chunli/victory-52x140x5.png", "width" : "52", "height": "140", "frames": "5", "mood": "win" }                        
+            { "name": "victory", "file": "images/chunli/victory-52x140x5.png", "width" : "52", "height": "140", "frames": "5", "mood": "win" },                        
+            { "name": "defeat", "file": "images/chunli/defeat-80x96.4.png", "width" : "80", "height": "96", "frames": "4", "mood": "lose" }                        
         ]
     },
     {
@@ -23,7 +24,8 @@
             { "name": "mpunch", "file": "images/ryu/mpunch-62x96x3.png", "width" : "62", "height": "96", "frames": "3", "mood": "attack" },          
             { "name": "lpunch", "file": "images/ryu/lpunch-62x96x3.png", "width" : "62", "height": "96", "frames": "3", "mood": "attack" },          
             { "name": "hpunch", "file": "images/ryu/hpunch-75x96x5.png", "width" : "75", "height": "96", "frames": "5", "mood": "attack" },            
-            { "name": "victory", "file": "images/ryu/victory-52x110x5.png", "width" : "52", "height": "110", "frames": "5", "mood": "win" }            
+            { "name": "victory", "file": "images/ryu/victory-52x110x5.png", "width" : "52", "height": "110", "frames": "5", "mood": "win" },
+            { "name": "defeat", "file": "images/ryu/defeat-75x96.4.png", "width" : "75", "height": "96", "frames": "4", "mood": "lose" }                                  
         ]
     }
 ]
