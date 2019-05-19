@@ -11,28 +11,35 @@ export default class extends Phaser.State {
   preload() { }
 
   create() {
-    this.tilesprite = this.game.add.tileSprite(0, 0, this.world.bounds.width, this.world.bounds.height, 'background');
+    // add bg layer
+    this.bgLayer = this.game.add.tileSprite(0, 0, this.world.bounds.width, this.world.bounds.height, 'background');
 
     // add sprites
-    this.player1 = this.game.add.sprite(this.world.centerX - 200, this.world.centerY, 'chunli');
-    this.player2 = this.game.add.sprite(this.world.centerX + 200, this.world.centerY, 'ryu');
+    this.player1 = this.game.add.sprite(this.world.centerX - 300, this.world.centerY - 240, 'chunli');
+    this.player2 = this.game.add.sprite(this.world.centerX + 300, this.world.centerY - 240, 'ryu');
     this.player1.params = { fighter: FIGHTER_CHUN_LI, movementCooldown: 0, negative: false };
     this.player2.params = { fighter: FIGHTER_RYU, movementCooldown: 0, negative: true };
+    this.collisionLayer = this.game.add.sprite(0, 832, 'collision');
 
-    this.game.physics.enable( [ this.player1, this.player2, this.tilesprite ], Phaser.Physics.ARCADE);
-    this.tilesprite.body.collideWorldBounds = true;
-    this.tilesprite.body.immovable = true;
-    this.tilesprite.body.allowGravity = false;
+    // enable physics for all bodies
+    this.game.physics.enable( [ this.player1, this.player2, this.collisionLayer ], Phaser.Physics.ARCADE);
+    this.collisionLayer.body.collideWorldBounds = true;
+    this.collisionLayer.body.immovable = true;
+    this.collisionLayer.body.allowGravity = false;
 
+    this.player1.body.allowGravity = true;
+    this.player1.body.gravity.y = 200;
     this.player1.body.collideWorldBounds = true;
+
+    this.player2.body.allowGravity = true;
+    this.player2.body.gravity.y = 200;
     this.player2.body.collideWorldBounds = true;
 
 
-    // console.log(this.game, this.player1, this.player2);
+    // setup camera
     this.game.camera.follow(this.player1)
 
-    this.movementTime = MOVEMENT_UPTIME;
-    // set up controls
+    // set up controls : TODO - change from arrow keys to keyboard
     this.cursors = game.input.keyboard.createCursorKeys();
 
     //  Here we add a new animation called 'walk'
@@ -50,20 +57,23 @@ export default class extends Phaser.State {
 
 
     //  And this starts the animation playing by using its key ("walk")
-    //  30 is the frame rate (30fps)
     //  true means it will loop when it finishes
     this.player1.animations.play('walk', 10, true);
     this.player2.animations.play('walk', 10, true);
 
+    // start movement cycle (players only move during uptime, though they can always lunge)
+    this.movementTime = MOVEMENT_UPTIME;
+
 
   }
-  update() {
-    const { player1, player2, tilesprite } = this;
 
+  update(){
+    this.game.physics.arcade.collide(this.player1, this.collisionLayer);
+    this.game.physics.arcade.collide(this.player2, this.collisionLayer);
   }
 
   render() {
-    const { cursors, player1, player2, tilesprite } = this;
+    const { cursors, player1, player2, bgLayer, collisionLayer } = this;
 
     cooldownTic(player1);
     cooldownTic(player2);
@@ -71,7 +81,6 @@ export default class extends Phaser.State {
     if (__DEV__) {
       this.game.debug.spriteInfo(player1, 32, 32)
     }
-    
     
     // player controls
     if (player1.params.isLunging) lunge(player1);
@@ -95,16 +104,25 @@ export default class extends Phaser.State {
       this.movementTime = MOVEMENT_UPTIME;
     }
 
-    game.physics.arcade.collide(player2, tilesprite);
+
+    // player body collisions  
+    game.physics.arcade.collide(player2, bgLayer, () => {
+      player2.body.velocity.y = -100;
+    });
     game.physics.arcade.collide(player1, player2, () => {
       player1.body.velocity.x = -2000;
       player2.body.velocity.x = 2000;
     });
 
+    // weapon collisions
     if (player1.params && player1.params.weapon){
       game.physics.arcade.collide(player1.params.weapon, player2, () => {
-        console.log('hello', player1.params.weapon)
         player2.kill();
+      });
+    }
+    if (player2.params && player2.params.weapon){
+      game.physics.arcade.collide(player2.params.weapon, player1, () => {
+        player1.kill();
       });
     }
 

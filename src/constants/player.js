@@ -4,7 +4,6 @@ export const BACKWARD_VELOCITY = -150;
 
 // lunging
 export const LUNGE_INITIAL_VELOCITY = 2000;
-
 export const LUNGE_DECELERATION = 1.25
 export const LUNGE_TIMEFRAME = 400;
 

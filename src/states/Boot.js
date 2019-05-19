@@ -9,9 +9,9 @@ export default class extends Phaser.State {
     this.fontsReady = false
     this.fontsLoaded = this.fontsLoaded.bind(this)
 
+    // set up camera / game bounds
     this.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
-    // this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    this.game.world.setBounds(0, 0, 1920, 1920);
+    this.game.world.setBounds(0, 0, 2560, 1920);
   }
 
   preload() {
@@ -27,9 +27,12 @@ export default class extends Phaser.State {
     let text = this.add.text(this.world.centerX, this.world.centerY, 'loading fonts', { font: '16px Arial', fill: '#dddddd', align: 'center' })
     text.anchor.setTo(0.5, 0.5)
 
+
+    // preload assets
     this.load.image('loaderBg', './assets/images/loader-bg.png')
     this.load.image('loaderBar', './assets/images/loader-bar.png')
     this.load.image('background', './assets/images/naturey.png')
+    this.load.image('collision', './assets/images/naturey-collision.png')
 
   }
 
