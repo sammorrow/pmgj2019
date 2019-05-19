@@ -6,9 +6,9 @@ export default class extends Phaser.State {
   }
 
   preload() {
-    this.load.image('assets/images/menu/title.png');
-    this.load.image('assets/images/menu/graphic.png');
-    this.load.image('assets/images/menu/button.png');
+    this.load.image('title', 'assets/images/menu/title.png');
+    this.load.image('graphic', 'assets/images/menu/graphic.png');
+    this.load.image('button', 'assets/images/menu/button.png');
     
   }
 
