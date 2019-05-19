@@ -19,24 +19,28 @@ export default class extends Phaser.State {
 
     this.load.image('sword', 'assets/images/sword.png');
 
-    this.load.audio('loop1', 'assets/audio/loops/Purple Monkey Loop 1.wav');
-    this.load.audio('loop2', 'assets/audio/loops/Purple Monkey Loop 2 Slower Maybe Menu.wav');
-    this.load.audio('loop3', 'assets/audio/loops/Purple Monkey Loop 3.wav');
-    this.load.audio('loop4', 'assets/audio/loops/Purple Monkey Loop 4.wav')
+    this.load.audio('loop1', 'assets/audio/loops/Purple Monkey Loop 1.mp3');
+    this.load.audio('loop2', 'assets/audio/loops/Purple Monkey Loop 2 Slower Maybe Menu.mp3');
+    this.load.audio('loop3', 'assets/audio/loops/Purple Monkey Loop 3.mp3');
+    this.load.audio('loop4', 'assets/audio/loops/Purple Monkey Loop 4 Revised.mp3')
 
-    this.load.audio('scream1', 'assets/audio/sfx/Purple Monkey Scream 1.wav');
-    this.load.audio('scream2', 'assets/audio/sfx/Purple Monkey Scream 2.wav');
-    this.load.audio('scream3', 'assets/audio/sfx/Purple Monkey Scream 3.wav');
-    this.load.audio('scream4', 'assets/audio/sfx/Purple Monkey Scream 4.wav');
-    this.load.audio('scream5', 'assets/audio/sfx/Purple Monkey Scream 4.wav');
+    this.load.audio('crowd', 'assets/audio/sfx/Purple Monkey Crowd.mp3');
+    this.load.audio('grunt', 'assets/audio/sfx/Purple Monkey Grunt.mp3');
 
-    this.load.audio('hpunch', 'assets/audio/sfx/Purple Monkey Punch High.wav');
-    this.load.audio('mpucnh', 'assets/audio/sfx/Purple Monkey Punch Med.wav');
-    this.load.audio('lpunch', 'assets/audio/sfx/Purple Monkey Punch Low.wav');
+    this.load.audio('hpunch', 'assets/audio/sfx/Purple Monkey Punch High.mp3');
+    this.load.audio('lpunch', 'assets/audio/sfx/Purple Monkey Punch Low.mp3');
+    this.load.audio('mpucnh', 'assets/audio/sfx/Purple Monkey Punch Med.mp3');
 
-    this.load.audio('grunt', 'assets/audio/sfx/Purple Monkey Grunt.wav');
-    this.load.audio('crowd', 'assets/audio/sfx/Purple Monkey Crowd.wav');
-    this.load.audio('squarefx', 'assets/audio/sfx/Purple Monkey Square FX 1.wav')
+    this.load.audio('scream1', 'assets/audio/sfx/Purple Monkey Scream 1.mp3');
+    this.load.audio('scream2', 'assets/audio/sfx/Purple Monkey Scream 2.mp3');
+    this.load.audio('scream3', 'assets/audio/sfx/Purple Monkey Scream 3.mp3');
+    this.load.audio('scream4', 'assets/audio/sfx/Purple Monkey Scream 4.mp3');
+    this.load.audio('scream5', 'assets/audio/sfx/Purple Monkey Scream 4.mp3');
+\
+    this.load.audio('defeat', 'assets/audio/sfx/Purple Monkey Defeat.mp3');
+    this.load.audio('victory', 'assets/audio/sfx/Purple Monkey Victory.mp3');
+
+    this.load.audio('squarefx', 'assets/audio/sfx/Purple Monkey Square FX 1.mp3')
   }
 
 
