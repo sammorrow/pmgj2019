@@ -8,7 +8,7 @@ Simple tug-of-war game, built with Phaser.
 
 ### 1. Clone this repo
 
-In your terminal, navigate into your workspace directory and run
+In your terminal, navigate into your workspace directory and run:
 
 ```git clone https://github.com/sammorrow/pmgj2019.git```
 
@@ -16,11 +16,11 @@ In your terminal, navigate into your workspace directory and run
 
 https://nodejs.org/en/
 
-### 3. Install dependencies (optionally you can install [yarn](https://yarnpkg.com/)):
+### 3. Install dependencies:
 
 Navigate to the cloned repo's directory and run:
 
-```npm install``` 
+```npm install```
 
 ### 4. Run the development server:
 
@@ -34,7 +34,7 @@ To run the game, open your browser and enter http://localhost:3000 into the addr
 
 ## Build for deployment:
 
-Run:
+In the appropriate directory, run:
 
 ```npm run deploy```
 
