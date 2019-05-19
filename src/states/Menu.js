@@ -14,6 +14,8 @@ export default class extends Phaser.State {
 
   create() {
     this.game.add.audio('loop2').play();
+    this.game.add.image('title', '500', '500')
+
   }
 }
 

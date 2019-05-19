@@ -52,8 +52,7 @@ export default class extends Phaser.State {
 
   create () {
     this.game.add.tileSprite(0, 0, this.world.bounds.width, this.world.bounds.height, 'background');
-    this.state.start('Game');
-
+    this.state.start('Menu');
     let music = this.game.add.audio('loop1');
     // music.play()
   }
