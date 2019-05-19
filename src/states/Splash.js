@@ -18,6 +18,10 @@ export default class extends Phaser.State {
     this.load.spritesheet('ryupunch', 'assets/images/ryu/jumphkick-56x96x3.png', 56, 96, 3);
     this.load.spritesheet('chunidle', 'assets/images/chunli/idle-53x96x4.png', 53, 96, 4);
     this.load.spritesheet('ryuidle', 'assets/images/ryu/idle-53x96x4.png', 53, 96, 4);
+    this.load.spritesheet('chunvictory', 'assets/images/chunli/victory-52x140x5.png', 52, 140, 5);
+    this.load.spritesheet('ryuvictory', 'assets/images/ryu/victory-52x110x5.png', 52, 110, 5);
+    this.load.spritesheet('chunfall', 'assets/images/chunli/defeat-80-96-4i.png', 80, 96, 4);
+    this.load.spritesheet('ryufall', 'assets/images/ryu/defeat-75x96x4.png', 75, 96, 4);
 
     this.load.image('sword', 'assets/images/red-block.png');
 
@@ -31,7 +35,7 @@ export default class extends Phaser.State {
 
     this.load.audio('hpunch', 'assets/audio/sfx/Purple Monkey Punch High.mp3');
     this.load.audio('lpunch', 'assets/audio/sfx/Purple Monkey Punch Low.mp3');
-    this.load.audio('mpucnh', 'assets/audio/sfx/Purple Monkey Punch Med.mp3');
+    this.load.audio('mpunch', 'assets/audio/sfx/Purple Monkey Punch Med.mp3');
 
     this.load.audio('scream1', 'assets/audio/sfx/Purple Monkey Scream 1.mp3');
     this.load.audio('scream2', 'assets/audio/sfx/Purple Monkey Scream 2.mp3');
@@ -51,6 +55,6 @@ export default class extends Phaser.State {
     this.state.start('Game');
 
     let music = this.game.add.audio('loop1');
-    music.play()
+    // music.play()
   }
 }

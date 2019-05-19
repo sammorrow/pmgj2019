@@ -7,13 +7,13 @@ export const resetSpriteMomentum = sprite => {
 
 
 // called during every frame
-export const cooldownTic = sprite => {
+export const cooldownTic = (sprite, ctx) => {
   if (sprite.params.movementCooldown > 0) sprite.params.movementCooldown = sprite.params.movementCooldown - COOLDOWN_TIC;
   else sprite.params.canMove = true;
 
   if (sprite.params.lungeTimeframe > 0) sprite.params.lungeTimeframe = sprite.params.lungeTimeframe - COOLDOWN_TIC;
   else {
-    if (sprite.animations.currentAnim.name !== "walk"){
+    if (sprite.animations.currentAnim.name === "punch"){
       if (sprite.params.fighter === FIGHTER_CHUN_LI){
         sprite.loadTexture('chunli');
         sprite.animations.play('walk');  
@@ -22,10 +22,25 @@ export const cooldownTic = sprite => {
         sprite.animations.play('walk');  
       }
     }
-
     sprite.params.isLunging = false;
     sprite.params.lungeFrame = 0;
     sprite.params.weapon = null;
+  }
+
+  if (sprite.params.deadTimeout > 0) sprite.params.deadTimeout = sprite.params.deadTimeout - COOLDOWN_TIC;
+  else if (sprite.params.isDead){
+    sprite.params.deadTimeout = 0;
+    sprite.angle = 0;
+    sprite.params.isDead = false;
+    if (sprite.params.negative) {
+      sprite.loadTexture('ryu');
+      sprite.animations.play('walk');  
+      sprite.reset(ctx.player1.body.x + 1000, ctx.player1.body.y);
+    } else {
+      sprite.loadTexture('chunli');
+      sprite.animations.play('walk');  
+      sprite.reset(ctx.player2.body.x - 1000, ctx.player2.body.y);
+    }
   }
 }
 
@@ -42,10 +57,11 @@ export const activateLunge = (sprite, ctx) => {
   
   if (sprite.params.fighter === FIGHTER_CHUN_LI){
     sprite.loadTexture('chunpunch');
-    sprite.animations.play('punch', 10);  
+    sprite.animations.play('punch', 10);
   } else {
     sprite.loadTexture('ryupunch');
-    sprite.animations.play('punch', 10);  
+    sprite.animations.play('punch', 10);
+    if (Math.floor(Math.random() * 100) > 20) ctx.grunt.play();
   }
 }
 
@@ -59,12 +75,12 @@ export const lunge = (sprite, ctx) => {
     let newSprite;
     if (sprite.params.negative){
       newSprite = new Phaser.Sprite(ctx.game, 0, 0, 'sword', 'red-block.png')
-      newSprite.scale.setTo(0.75, 0.5);
+      newSprite.scale.setTo(0.75, 0.7);
       newSprite.anchor.setTo(0.5, -0.75);
       newSprite.scale.x *= -1;
     } else {
       newSprite = new Phaser.Sprite(ctx.game, 64, 0, 'sword', 'red-block.png');
-      newSprite.scale.setTo(0.6, 0.5);
+      newSprite.scale.setTo(0.75, 0.7);
       newSprite.anchor.setTo(0.4, -0.75);
     }
     // newSprite.alpha = 0;

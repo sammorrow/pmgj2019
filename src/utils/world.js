@@ -10,6 +10,11 @@ export const countdown = ctx => {
   } else if (ctx.countdownFrame === 125 && ctx.roundText){
     ctx.roundText.setText("");
   }
-  ctx.player1.animations.play("walk");
   ctx.countdownFrame++;
+}
+
+export const playHitSfx = ctx => {
+  if (Math.floor(Math.random() * 100) > 20) ctx.hpunch.play();
+  else if (Math.floor(Math.random() * 100) > 20) ctx.mpunch.play();
+  else ctx.lpunch.play()
 }
