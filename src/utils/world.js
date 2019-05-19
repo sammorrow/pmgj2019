@@ -32,5 +32,5 @@ export const playHitSfx = ctx => {
 export const resetGame = ctx => () => {
   ctx.music.stop()
   ctx.cheers.stop()
-  ctx.state.start('Splash');
+  ctx.state.start('Game');
 }

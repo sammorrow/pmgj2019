@@ -229,7 +229,7 @@ export default class extends Phaser.State {
     if (this.resetTimer){
       this.resetTimer--;
       if (this.resetTimer === 0){
-        this.button = this.game.add.image(200, 150, 'button')
+        this.button = this.game.add.image(200, 150, 'restart-button')
         this.button.fixedToCamera = true;
         this.button.inputEnabled = true;
         this.button.events.onInputDown.add(resetGame(this), this);

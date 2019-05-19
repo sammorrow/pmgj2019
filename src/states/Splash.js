@@ -22,7 +22,7 @@ export default class extends Phaser.State {
     this.load.spritesheet('ryuvictory', 'assets/images/ryu/victory-52x110x5.png', 52, 110, 5);
     this.load.spritesheet('chunfall', 'assets/images/chunli/defeat-80-96-4i.png', 80, 96, 4);
     this.load.spritesheet('ryufall', 'assets/images/ryu/defeat-75x96x4.png', 75, 96, 4);
-    this.load.image('button', 'assets/images/new-game-button.png');
+    this.load.image('restart-button', 'assets/images/new-game-button.png');
 
     this.load.image('sword', 'assets/images/red-block.png');
 
